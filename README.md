@@ -272,6 +272,10 @@ describe('MyActivitiesFacade', () => {
 });
 ```
 
+### Shallow render
+
+https://medium.com/@getsaf/why-shallow-rendering-is-import-in-angular-unit-tests-84569d571b72
+
 Source: 
 - https://www.linkedin.com/pulse/how-test-angular-components-using-jest-nice-easy-wagner-caetano/
 - https://albertobasalo.medium.com/unit-testing-angular-with-jest-7de62ae2acd8
