@@ -67,3 +67,40 @@ const customersService = {
 - mockReturnValue: Allows you to set the return value of the mock.
 - mockResolvedValue: Allows you to set the resolved value of the mock.
 - mockRejectedValue: Allows you to set the rejected value of the mock.
+
+```typescript
+const customersService = {
+  getCustomers: jest.fn().mockReturnValue(of([{ name: 'John' }])),
+}
+
+const serviceChooser = {
+  getService: jest.fn().mockReturnValue(customersService),
+}
+```
+
+### Different mock objects based on input
+
+```typescript
+const customersService = {
+  getCustomers: jest.fn().mockImplementation((input) => {
+    if (input === 'John') {
+      return of([{ name: 'John' }]);
+    } else {
+      return of([{ name: 'Mary' }]);
+    }
+  }),
+}
+```
+
+### Mock once
+
+We could also add 'Once' to it, that way it would work as a mock just once, and then you would need to mock again.
+That's also useful for cache testing, like imagine a scenario where the first time it shouldn't return something, but then the next one it should return something, we could do:
+
+```typescript
+const customersService = {
+  getCustomers: jest.fn()
+    .mockImplementationOnce(() => of([]))
+    .mockImplementationOnce(() => of([{ name: 'John' }])),
+}
+```
